@@ -622,6 +622,11 @@ footer {
   text-align: center;
 }
 
+.footer-note {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;
