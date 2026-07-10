@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>神戶五天親子旅行行程</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css?v=5" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="行程導覽">
+        <a href="#overview">總覽</a>
+        <a href="#day-1">Day 1</a>
+        <a href="#day-2">Day 2</a>
+        <a href="#day-3">Day 3</a>
+        <a href="#day-4">Day 4</a>
+        <a href="#day-5">Day 5</a>
+      </nav>
+      <div class="hero__content">
+        <p class="eyebrow">2026/9/10 - 2026/9/14</p>
+        <h1>神戶五天親子旅行</h1>
+        <p>
+          三個家庭、三位 2.5 歲小孩的慢節奏版本。住宿固定在 Town House Sannomiya East，
+          大多數天維持一個主景點，Day 3 為加排版，保留午睡、採買和臨時調整空間。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="map-panel" aria-label="互動地圖">
+        <div class="map-panel__heading">
+          <div>
+            <p class="eyebrow">Map</p>
+            <h2>互動地圖</h2>
+          </div>
+          <span class="map-mode" id="mapMode">總覽</span>
+          <div class="map-actions" aria-label="地圖篩選">
+            <button class="filter-btn is-active" data-day="all" type="button">全部</button>
+            <button class="filter-btn" data-day="1" type="button">Day 1</button>
+            <button class="filter-btn" data-day="2" type="button">Day 2</button>
+            <button class="filter-btn" data-day="3" type="button">Day 3</button>
+            <button class="filter-btn" data-day="4" type="button">Day 4</button>
+            <button class="filter-btn" data-day="5" type="button">Day 5</button>
+          </div>
+        </div>
+        <div class="map-frame">
+          <div class="map-controls" aria-label="地圖縮放控制">
+            <button class="map-control" type="button" data-map-action="zoom-in" aria-label="放大地圖">+</button>
+            <button class="map-control" type="button" data-map-action="zoom-out" aria-label="縮小地圖">−</button>
+            <button class="map-control reset" type="button" data-map-action="reset" aria-label="重設地圖">重設</button>
+          </div>
+          <div id="tripMap" class="map" role="application" aria-label="神戶行程互動地圖"></div>
+          <div class="map-tooltip" id="mapTip">
+            <strong>點選地圖標記看位置</strong>
+            <span>切換日期時，地圖會只留下當天行程點位與住宿。</span>
+          </div>
+        </div>
+        <div class="legend" aria-label="地圖圖例">
+          <span><i class="legend-dot legend-dot--hotel"></i>住宿</span>
+          <span><i class="legend-dot legend-dot--day1"></i>Day 1</span>
+          <span><i class="legend-dot legend-dot--day2"></i>Day 2</span>
+          <span><i class="legend-dot legend-dot--day3"></i>Day 3</span>
+          <span><i class="legend-dot legend-dot--day4"></i>Day 4</span>
+          <span><i class="legend-dot legend-dot--day5"></i>Day 5</span>
+        </div>
+      </section>
+
+      <section id="overview" class="overview">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>五天總覽</h2>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-card" data-jump-day="1">
+            <span>9/10 週四</span>
+            <h3>抵達神戶 + Harborland</h3>
+            <p>神戶機場進市區，入住休息，傍晚到港邊吃飯看夜景。</p>
+          </article>
+          <article class="overview-card" data-jump-day="2">
+            <span>9/11 週五</span>
+            <h3>神戶動物王國 + 南京町</h3>
+            <p>上午動物王國，下午午睡，傍晚南京町、元町、舊居留地。</p>
+          </article>
+          <article class="overview-card" data-jump-day="3">
+            <span>9/12 週六</span>
+            <h3>麵包超人 + 須磨海洋世界</h3>
+            <p>麵包超人館短版後移動到須磨海洋世界；這天偏滿，保留二選一彈性。</p>
+          </article>
+          <article class="overview-card" data-jump-day="4">
+            <span>9/13 週日</span>
+            <h3>淡路島蠟筆小新</h3>
+            <p>建議租車一天，鎖定幼兒能玩的區域和園區拍照。</p>
+          </article>
+          <article class="overview-card" data-jump-day="5">
+            <span>9/14 週一</span>
+            <h3>退房 + 神戶機場</h3>
+            <p>早餐、整理行李，提早往機場，避免帶小孩壓線。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="trip-basics">
+        <div class="basic-block">
+          <h2>住宿</h2>
+          <p>
+            四晚皆住 <strong>Town House Sannomiya East</strong>，地址為
+            神戶市中央區雲井通 2 丁目 4-9。以三宮東側為據點，去神戶機場、
+            Port Liner、JR 三宮和市區景點都方便，淡路島那天再單日租車即可。
+          </p>
+        </div>
+        <div class="basic-block">
+          <h2>交通策略</h2>
+          <p>
+            市區行程以 Port Liner、JR、地下鐵、短程計程車為主。淡路島蠟筆小新
+            Adventure Park 建議租車或包車，三個家庭自駕需事先確認兒童安全座椅。
+          </p>
+        </div>
+      </section>
+
+      <section id="day-1" class="day-section" data-section-day="1">
+        <div class="day-header">
+          <p class="eyebrow">Day 1</p>
+          <h2>9/10 週四｜抵達神戶 + Harborland 輕鬆夜景</h2>
+        </div>
+        <div class="detail-layout">
+          <ol class="timeline">
+            <li><time>08:45</time><strong>台中機場起飛</strong><span>搭乘 JX306 前往神戶機場。</span></li>
+            <li><time>12:30</time><strong>抵達神戶機場</strong><span>抓入境、領行李、集合與小孩整理時間。</span></li>
+            <li><time>13:30</time><strong>前往 Town House Sannomiya East</strong><span>建議 Port Liner 到三宮後短程計程車，或三組家庭分車直達。</span></li>
+            <li><time>15:00</time><strong>入住、補眠、採買</strong><span>附近先買水、早餐、尿布備品和簡單零食。</span></li>
+            <li><time>17:00</time><strong>Harborland / umie / MOSAIC</strong><span>晚餐、港邊散步、摩天輪，作為第一天的放鬆開場。</span></li>
+            <li><time>20:00</time><strong>回飯店</strong><span>第一晚以早睡為目標，讓孩子調整節奏。</span></li>
+          </ol>
+          <aside class="note-box">
+            <h3>注意事項</h3>
+            <p>神戶動物王國常見週四休園，這天不排大景點。抵達日最重要的是降低疲勞，不要把港邊行程排成必須完成的任務。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="day-2" class="day-section" data-section-day="2">
+        <div class="day-header">
+          <p class="eyebrow">Day 2</p>
+          <h2>9/11 週五｜神戶動物王國 + 南京町</h2>
+        </div>
+        <div class="detail-layout">
+          <ol class="timeline">
+            <li><time>08:00</time><strong>早餐與出門準備</strong><span>推車、替換衣物、濕紙巾和輕食先備好。</span></li>
+            <li><time>09:20</time><strong>前往 Port Liner 三宮站</strong><span>搭往計算科學中心站方向，動物王國就在站邊。</span></li>
+            <li><time>10:00</time><strong>神戶動物王國</strong><span>先看室內區與動物互動，天氣熱或下雨也比較穩。</span></li>
+            <li><time>12:00</time><strong>園內午餐</strong><span>不要把午餐拖太晚，幼兒下午情緒會比較穩。</span></li>
+            <li><time>14:30</time><strong>回飯店午睡</strong><span>搭 Port Liner 回三宮，再回住宿休息。</span></li>
+            <li><time>16:30</time><strong>南京町</strong><span>邊走邊吃，順逛元町商店街、舊居留地、大丸神戶店周邊。</span></li>
+            <li><time>18:30</time><strong>晚餐與回飯店</strong><span>若南京町太擠，就轉往元町或三宮找能坐下來的餐廳。</span></li>
+          </ol>
+          <aside class="note-box">
+            <h3>注意事項</h3>
+            <p>南京町放週五傍晚最順，也避開週六人潮。這天有兩段移動，下午午睡請不要省略，後面三天會比較好走。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="day-3" class="day-section" data-section-day="3">
+        <div class="day-header">
+          <p class="eyebrow">Day 3</p>
+          <h2>9/12 週六｜麵包超人博物館 + 神戶須磨海洋世界</h2>
+        </div>
+        <div class="detail-layout">
+          <ol class="timeline">
+            <li><time>08:30</time><strong>早餐後出門</strong><span>週六人潮較多，麵包超人館建議買早場指定票。</span></li>
+            <li><time>10:00</time><strong>神戶麵包超人兒童博物館短版</strong><span>抓 1.5 到 2 小時，2F 博物館區不可使用嬰兒車，建議準備揹巾。</span></li>
+            <li><time>12:00</time><strong>MOSAIC / umie 午餐</strong><span>先吃飽再移動，下午才有體力去須磨。</span></li>
+            <li><time>13:15</time><strong>移動到須磨海浜公園</strong><span>從神戶站或三宮搭 JR 到須磨海浜公園站，出站後步行約 5 分鐘。</span></li>
+            <li><time>14:00</time><strong>神戶須磨海洋世界</strong><span>看虎鯨、海豚、水族館展區；官方建議事前購票，最後入館是閉館前 1 小時。</span></li>
+            <li><time>17:00</time><strong>回三宮晚餐</strong><span>如果小孩太累，提早離開回住宿休息，不硬等到閉館。</span></li>
+          </ol>
+          <aside class="note-box">
+            <h3>注意事項</h3>
+            <p>這天排得下，但比原版更滿。若孩子前一天睡不好，建議二選一：想要室內水族館與大型表演就選須磨海洋世界，想要角色互動就選麵包超人館。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="day-4" class="day-section" data-section-day="4">
+        <div class="day-header">
+          <p class="eyebrow">Day 4</p>
+          <h2>9/13 週日｜淡路島蠟筆小新 Adventure Park</h2>
+        </div>
+        <div class="detail-layout">
+          <ol class="timeline">
+            <li><time>08:00</time><strong>取車與出發準備</strong><span>建議三宮附近取車，確認兒童安全座椅、ETC、停車場位置。</span></li>
+            <li><time>09:00</time><strong>開車前往淡路島</strong><span>經明石海峽大橋，車上準備零食與安撫用品。</span></li>
+            <li><time>10:15</time><strong>Nijigen no Mori</strong><span>以 Crayon Shin-chan Adventure Park 為主，拍照與幼兒可玩的區域優先。</span></li>
+            <li><time>12:00</time><strong>園區或服務區午餐</strong><span>不要貪多跑點，午餐後讓孩子有安靜時間。</span></li>
+            <li><time>13:30</time><strong>園區散步、商店、照片時間</strong><span>若孩子累，就提早收尾，不硬排夜間活動。</span></li>
+            <li><time>15:30</time><strong>回神戶</strong><span>避開太晚回程，晚上在飯店附近吃飯。</span></li>
+            <li><time>18:30</time><strong>還車與晚餐</strong><span>行李留飯店，只做單日租車，壓力最低。</span></li>
+          </ol>
+          <aside class="note-box">
+            <h3>注意事項</h3>
+            <p>這是全程最適合租車的一天。若改搭大眾運輸也可行，但班次與轉乘容錯率較低，三個幼兒同行會比較辛苦。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="day-5" class="day-section" data-section-day="5">
+        <div class="day-header">
+          <p class="eyebrow">Day 5</p>
+          <h2>9/14 週一｜退房 + 神戶機場返台</h2>
+        </div>
+        <div class="detail-layout">
+          <ol class="timeline">
+            <li><time>07:30</time><strong>早餐與整理行李</strong><span>把登機用品、尿布、備用衣物放在隨身包。</span></li>
+            <li><time>09:30</time><strong>退房</strong><span>不再排景點，只保留附近早餐、便利商店、伴手禮時間。</span></li>
+            <li><time>10:00</time><strong>前往神戶機場</strong><span>從三宮搭 Port Liner 最直覺；行李多可分車搭計程車。</span></li>
+            <li><time>11:00</time><strong>機場報到與午餐</strong><span>帶小孩抓寬一點，安檢前後都保留緩衝。</span></li>
+            <li><time>13:30</time><strong>神戶機場起飛</strong><span>搭乘 JX307 返台，15:35 抵達台中。</span></li>
+          </ol>
+          <aside class="note-box">
+            <h3>注意事項</h3>
+            <p>最後一天不要臨時加景點。三組家庭只要有人行李或小孩狀態卡住，壓線壓力會很大，早到機場會舒服很多。</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>神戶親子五日行程｜住宿：Town House Sannomiya East｜市區大眾運輸 + 淡路島單日租車</p>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js?v=5"></script>
+  </body>
+</html>
