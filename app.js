@@ -87,7 +87,7 @@ const stops = {
     label: "4",
     lat: 34.5741,
     lng: 135.0103,
-    desc: "Day 4 單日租車前往，鎖定幼兒可玩區域與拍照。",
+    desc: "Day 4 從三宮搭直達巴士，鎖定親子 Pass 幼兒設施與大草坪。",
   },
   airportReturn: {
     name: "神戶機場返台",
@@ -261,6 +261,22 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll("[data-section-day]").forEach((section) => observer.observe(section));
+
+document.querySelectorAll("[data-dialog-open]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.getElementById(button.dataset.dialogOpen)?.showModal();
+  });
+});
+
+document.querySelectorAll("[data-dialog-close]").forEach((button) => {
+  button.addEventListener("click", () => button.closest("dialog")?.close());
+});
+
+document.querySelectorAll("dialog").forEach((dialog) => {
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+});
 
 map.fitBounds(defaultBounds, { padding: [28, 28] });
 setActiveDay("all");

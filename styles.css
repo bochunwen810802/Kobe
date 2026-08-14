@@ -620,6 +620,63 @@ section {
   margin-bottom: 1.25rem;
 }
 
+.day4-trip-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ticket-summary,
+.bus-summary {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.ticket-summary {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #fff8ed;
+}
+
+.ticket-summary h3,
+.bus-summary h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.ticket-summary p:not(.eyebrow),
+.bus-summary p:not(.eyebrow) {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.ticket-summary__status {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  color: #0f6b53;
+  background: #dff3e8;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.bus-summary__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.bus-summary__links .timeline-link {
+  grid-column: auto;
+}
+
 .detail-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -699,6 +756,116 @@ section {
   color: rgba(255, 255, 255, 0.82);
 }
 
+.note-box .timeline-link {
+  margin-top: 0.85rem;
+}
+
+.facility-dialog-trigger {
+  width: 100%;
+  min-height: 2.35rem;
+  margin-top: 0.65rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 0.45rem;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.facility-dialog-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.facility-dialog {
+  width: min(1080px, calc(100% - 2rem));
+  max-height: min(800px, calc(100dvh - 2rem));
+  padding: 0;
+  border: 1px solid rgba(24, 33, 47, 0.16);
+  border-radius: 0.5rem;
+  color: var(--ink);
+  background: #fffdf8;
+  box-shadow: 0 24px 80px rgba(15, 25, 39, 0.35);
+}
+
+.facility-dialog::backdrop {
+  background: rgba(15, 25, 39, 0.58);
+}
+
+.facility-dialog__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.facility-dialog__header h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.dialog-close {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.facility-table-wrap {
+  overflow: auto;
+  max-height: calc(min(800px, 100dvh - 2rem) - 6rem);
+  padding: 0 1.25rem 1.25rem;
+}
+
+.facility-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.facility-table th,
+.facility-table td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.facility-table th {
+  position: sticky;
+  top: 0;
+  color: var(--muted);
+  background: #fffdf8;
+  font-size: 0.82rem;
+}
+
+.facility-table td:first-child,
+.facility-table td:nth-child(4) {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.facility-table td:last-child {
+  color: #176a7d;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
 footer {
   width: min(1180px, calc(100% - 2rem));
   margin: 2rem auto;
@@ -731,6 +898,7 @@ footer {
   .stay-grid,
   .trip-basics,
   .detail-layout,
+  .day4-trip-meta,
   .supplementary-card {
     grid-template-columns: 1fr;
   }
@@ -788,6 +956,16 @@ footer {
 
   .overview-card {
     min-height: 150px;
+  }
+
+  .facility-dialog__header,
+  .facility-table-wrap {
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
+  }
+
+  .facility-table-wrap {
+    padding-bottom: 0.9rem;
   }
 
   .supplementary-card__details {
