@@ -10,12 +10,13 @@
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
     <header class="hero">
       <nav class="topbar" aria-label="行程導覽">
         <a href="#overview">總覽</a>
+        <a href="#weather">天氣</a>
         <a href="#day-1">Day 1</a>
         <a href="#day-2">Day 2</a>
         <a href="#day-3">Day 3</a>
@@ -103,6 +104,44 @@
             <h3>退房 + 神戶機場</h3>
             <p>早餐、整理行李，提早往機場，避免帶小孩壓線。</p>
           </article>
+        </div>
+      </section>
+
+      <section id="weather" class="summary-section weather-section" aria-labelledby="weatherTitle">
+        <div class="weather-heading">
+          <div class="section-heading">
+            <p class="eyebrow">Kobe Weather</p>
+            <h2 id="weatherTitle">五日天氣與穿著</h2>
+          </div>
+          <div class="weather-heading__actions">
+            <span class="weather-update" id="weatherUpdated">正在取得最新預報</span>
+            <button class="weather-refresh" id="weatherRefresh" type="button" aria-label="重新整理天氣">
+              <span aria-hidden="true">↻</span> 重新整理
+            </button>
+          </div>
+        </div>
+
+        <div class="weather-status" id="weatherStatus" role="status" aria-live="polite">
+          <span class="weather-status__pulse" aria-hidden="true"></span>
+          正在連線日本氣象廳預報資料…
+        </div>
+
+        <div class="weather-daily" id="weatherDaily" aria-label="旅行五日天氣摘要"></div>
+
+        <div class="weather-hourly" id="weatherHourly" hidden>
+          <div class="weather-hourly__heading">
+            <div>
+              <span id="weatherHourlyDate">逐時預報</span>
+              <strong id="weatherHourlyTitle">白天氣溫與降雨</strong>
+            </div>
+            <p>左右滑動查看 08:00–20:00；降雨量為該小時累積值。</p>
+          </div>
+          <div class="weather-hourly__scroll" id="weatherHourlyList"></div>
+        </div>
+
+        <div class="weather-footnote">
+          <p><strong>顯示邏輯：</strong>每張日卡會標示採用的預報區域；進入日本氣象廳 MSM 高解析範圍（約今天起 4 日）後，自動出現逐時預報，較遠日期先顯示每日摘要。</p>
+          <a href="https://open-meteo.com/en/docs/jma-api" target="_blank" rel="noreferrer">資料來源：JMA 氣象模型，經 Open-Meteo 提供</a>
         </div>
       </section>
 
@@ -502,6 +541,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="app.js?v=6"></script>
+    <script src="app.js?v=7"></script>
   </body>
 </html>
